@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezultat Transakcije</title>
+</head>
+<body>
+    <h1>Rezultat Transakcije</h1>
+    <div id="transaction-result"></div>
+
+    <script>
+        // Čitanje query stringa iz URL-a
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Dohvaćanje parametra "status"
+        const status = urlParams.get('ApprovalCode');
+
+        // Prikaz rezultata na stranici
+        const resultDiv = document.getElementById('transaction-result');
+        if (status !== null) {
+            resultDiv.innerHTML = '<p style="color: green;">Transakcija je uspješna!</p>';
+        } else if (status === 'error') {
+            resultDiv.innerHTML = '<p style="color: red;">Transakcija nije uspjela.</p>';
+        } else {
+            resultDiv.innerHTML = '<p>Status transakcije nije poznat.</p>';
+        }
+    </script>
+</body>
+</html>

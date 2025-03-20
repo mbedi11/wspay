@@ -1,20 +1,32 @@
-const express = require('express');
-const path = require('path');
-const app = express();
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Posluživanje statičkih datoteka iz direktorija "public"
+// Replicate __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const PORT = 3000;
+const server = `http://localhost:${PORT}`;
+// Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Ruta za testiranje WS PAY ReturnURL-a (ako je potrebno)
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.get('/return', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'return.html'));
 });
 
-// Pokretanje servera na portu 3000
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server radi na http://localhost:${PORT}`);
+app.get('/config', (req, res) => {
+    res.json({ server: server });
 });
 
-const server = "http://localhost:3000";
-module.exports = server;
+app.listen(PORT, () => {
+    console.log(`Server is running at ${server}`);
+});
+
+

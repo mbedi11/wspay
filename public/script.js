@@ -1,6 +1,20 @@
 
-window.onload = function() {
+window.onload = async function() {
     createShoppingCartID();
+    server = await getServer();
+    const serverField1 = document.querySelector('input[name="ReturnURL"]');
+    const serverField2 = document.querySelector('input[name="CancelURL"]');
+    const serverField3 = document.querySelector('input[name="ReturnErrorURL"]');
+    serverField1.value = server + "/return";
+    serverField2.value = server + "/return";
+    serverField3.value = server + "/return";
+    console.log("Server: ", server);
+}
+
+async function getServer() {
+    const response = await fetch('/config');
+    const data = await response.json();
+    return data.server;
 }
 
 function createShoppingCartID() {
@@ -21,3 +35,4 @@ function createSignature(){
     console.log("Signature: ",signatureField.value);
     document.forms['pay'].submit();
 }
+

@@ -2,12 +2,11 @@
 <html>
     <head>
         <title>WS PAY</title>
-        <script src="script.js"></script>
-        <script src="server.js"></script>
+        <script src="script.js"></script> 
         <script src="https://cdn.jsdelivr.net/npm/js-sha512@0.8.0/build/sha512.min.js"></script>
     </head>
     <body>
-    <img src="C:\Users\mihae\Desktop\wspay\tike.jpg" alt="tike" style="width:500px;height:500px;">
+    <img src="tike.jpg" alt="tike" style="width:500px;height:500px;">
     <br><br>
     <p>100e</p>
     <form name="pay" action="https://formtest.wspay.biz/authorization.aspx" method="POST">
@@ -16,9 +15,9 @@
         <input type="hidden" name="Version" value="2.0">
         <input type="hidden" name="TotalAmount" value="100,00">
         <input type="hidden" name="Signature" value="">
-        <input type="hidden" name="ReturnURL" value="<server-url>\return.html">
-        <input type="hidden" name="CancelURL" value="\return.html">
-        <input type="hidden" name="ReturnErrorURL" value="\return.html">
+        <input type="hidden" name="ReturnURL" value="">
+        <input type="hidden" name="CancelURL" value="">
+        <input type="hidden" name="ReturnErrorURL" value="">
         <button type="button" onclick="createSignature()">Pay</button>
     </form>
 </body>
